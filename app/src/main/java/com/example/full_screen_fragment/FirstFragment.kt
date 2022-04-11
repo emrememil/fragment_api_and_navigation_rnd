@@ -15,8 +15,8 @@ import androidx.navigation.fragment.NavHostFragment
 
 class FirstFragment : Fragment() {
 
-    lateinit var btnOpenDialog: Button
-    lateinit var btnOpenDialog2: Button
+    lateinit var btnOpenFragment: Button
+    lateinit var btnOpenFragment2: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,19 +32,19 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_first, container, false)
-        btnOpenDialog = view.findViewById(R.id.btnOpenDialog)
-        btnOpenDialog2 = view.findViewById(R.id.btnOpenDialog2)
+        btnOpenFragment = view.findViewById(R.id.btnOpenFragment)
+        btnOpenFragment2 = view.findViewById(R.id.btnOpenFragment2)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnOpenDialog.setOnClickListener {
+        btnOpenFragment.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.secondControllerFragment)
         }
 
-        btnOpenDialog2.setOnClickListener {
+        btnOpenFragment2.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.secondControllerFragment)
             setFragmentResult(Extras.REQUEST_KEY_3, bundleOf(Extras.DATA to "DATA"))
         }

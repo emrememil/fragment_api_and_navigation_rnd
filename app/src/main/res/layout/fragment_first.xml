@@ -25,7 +25,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btnOpenDialog"
+                android:id="@+id/btnOpenFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -50,7 +50,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btnOpenDialog2"
+                android:id="@+id/btnOpenFragment2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
