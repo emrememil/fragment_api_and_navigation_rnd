@@ -20,8 +20,4 @@
         android:id="@+id/thirdFragment"
         android:name="com.example.full_screen_fragment.ThirdFragment"
         android:label="ThirdFragment" />
-    <fragment
-        android:id="@+id/secondControllerFragment"
-        android:name="com.example.full_screen_fragment.SecondControllerFragment"
-        android:label="SecondControllerFragment" />
 </navigation>

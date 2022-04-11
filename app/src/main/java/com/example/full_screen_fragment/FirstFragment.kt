@@ -41,11 +41,11 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnOpenFragment.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.secondControllerFragment)
+            NavHostFragment.findNavController(this).navigate(R.id.secondFragment)
         }
 
         btnOpenFragment2.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.secondControllerFragment)
+            NavHostFragment.findNavController(this).navigate(R.id.secondFragment)
             setFragmentResult(Extras.REQUEST_KEY_3, bundleOf(Extras.DATA to "DATA"))
         }
     }

@@ -1,40 +1,22 @@
 package com.example.full_screen_fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.NavHostFragment
 
 
-class SecondFragment : Fragment() {
+class SecondFragment : Fragment(), InformationDialogListener {
 
     lateinit var btnReturnBack: Button
     lateinit var btnOpenDialog: Button
-
-    private var listener: SecondFragmentListener? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        try {
-            listener = parentFragment as SecondFragmentListener
-        } catch (e: Exception) {
-        }
-
-        if (listener == null && context is SecondFragmentListener) {
-            listener = context
-        }
-    }
-
-    override fun onDetach() {
-        listener = null
-        super.onDetach()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,22 +41,20 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnReturnBack.setOnClickListener {
-            listener?.onBackClicked()
+            NavHostFragment.findNavController(this).navigateUp()
+            setFragmentResult(Extras.REQUEST_KEY_1, bundleOf(Extras.DATA to "CloudApper"))
         }
 
         btnOpenDialog.setOnClickListener {
-            listener?.onOpenDialogClicked()
+            InformationDialog.newInstance().show(childFragmentManager, InformationDialog.TAG)
+            childFragmentManager.setFragmentResult(
+                Extras.REQUEST_KEY_2,
+                bundleOf(Extras.DATA to "Android")
+            )
         }
     }
 
-    companion object {
-        const val TAG = "SecondFragment"
-
-        fun newInstance() = SecondFragment()
+    override fun onStartFullScreenFragment() {
+        NavHostFragment.findNavController(this).navigate(R.id.thirdFragment)
     }
-}
-
-interface SecondFragmentListener{
-    fun onBackClicked()
-    fun onOpenDialogClicked()
 }
