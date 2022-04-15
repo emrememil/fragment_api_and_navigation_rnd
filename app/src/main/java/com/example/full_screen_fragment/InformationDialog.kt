@@ -1,6 +1,5 @@
 package com.example.full_screen_fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,32 +7,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class InformationDialog : BottomSheetDialogFragment() {
 
     lateinit var btnStartFullScreenFragment: Button
-
-    private var listener: InformationDialogListener? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        try {
-            listener = parentFragment as InformationDialogListener
-        } catch (e: Exception) {
-        }
-
-        if (listener == null && context is InformationDialogListener) {
-            listener = context
-        }
-    }
-
-    override fun onDetach() {
-        listener = null
-        super.onDetach()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +37,7 @@ class InformationDialog : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnStartFullScreenFragment.setOnClickListener {
-            listener?.onStartFullScreenFragment()
+            NavHostFragment.findNavController(this).navigate(R.id.thirdFragment)
         }
     }
 
@@ -65,8 +45,4 @@ class InformationDialog : BottomSheetDialogFragment() {
         const val TAG = "InformationDialog"
         fun newInstance() = InformationDialog()
     }
-}
-
-interface InformationDialogListener {
-    fun onStartFullScreenFragment()
 }

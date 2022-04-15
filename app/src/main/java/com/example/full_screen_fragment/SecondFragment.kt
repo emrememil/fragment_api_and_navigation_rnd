@@ -13,7 +13,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.NavHostFragment
 
 
-class SecondFragment : Fragment(), InformationDialogListener {
+class SecondFragment : Fragment() {
 
     lateinit var btnReturnBack: Button
     lateinit var btnOpenDialog: Button
@@ -52,9 +52,5 @@ class SecondFragment : Fragment(), InformationDialogListener {
                 bundleOf(Extras.DATA to "Android")
             )
         }
-    }
-
-    override fun onStartFullScreenFragment() {
-        NavHostFragment.findNavController(this).navigate(R.id.thirdFragment)
     }
 }
